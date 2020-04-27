@@ -34,7 +34,7 @@ Once this process of data cleansing is done, we input the array of summaries int
 
 ### 3. KMeans Clustering:
 
-Once the sentences are vectorized, the matrix is passed onto the clustering algorithm. We are choosing KMeans algorithm as it is easy to implement, adapts easily to new examples and has assured convergence to form clusters over uncharecterized/pattern-less data. 
+Once the sentences are vectorized, the matrix is passed onto the clustering algorithm. We are choosing KMeans algorithm as it is easy to implement, adapts easily to new examples and has assured convergence to form clusters over uncharecterized/pattern-less data. We run the KMeans algorithm for 500 iterations. To measure the clustering performance, we use the Sillhoutte coefficient. On average, the silhoutte coefficient score was around 0.09 - 0.12. 
 
 We have taken the number of clusters by the following formula:
 
@@ -43,11 +43,16 @@ We have taken the number of clusters by the following formula:
 Where **n** is the number of files taken (Twinandilla et al, 2018). 
 
 The cluster labels are attained once the clustering is done. These labels allow us to group the files by clusters 
-The text is grouped by cluster and a new dataframe is created. Once the data is loaded, we proceed to normalize (stopword/special charecters removal and lowercase conversion using **normalize** function) the text and proceed to the summarization portion. We use the lexrank algorithm to perform the summarization process. 
+The text is grouped by cluster and a new dataframe is created. Once the data is loaded, we proceed to normalize (stopword/special charecters removal and lowercase conversion using **normalize** function) the text and proceed to the summarization portion. We use the TextRank algorithm to perform the summarization process. 
+
+### 4. Summarization:
+The TextRank algorithm is one of the simpler extractive algorithms to implement. This algorithm takes in the sparse matrix from our vectorization process, converts it into a similarity matrix, creates a similarity graph and finally calculates the indices of the significant sentences from the given text. The summary provided by the algorithm is a form of Extractive Summarization. This means that the text in the summary is obtained from the sentences within the text which are ranked higher by the PageRank algorith. In our function, we provide the normalized text, the original text and the number of sentences required in the summary.
+
+**Function input -> cleansed(text, normalized text, no. of sentences)**
 
 The summarized text is then written into a markdown file labelled **output_#.md** denoting the cluster number #'s output. Additionally, the markdown file will have the first line denoting the cluster that it belongs to. 
 
-
+**Function input -> outputfiles(dataframe)**
 
 ------
 # Reference:
