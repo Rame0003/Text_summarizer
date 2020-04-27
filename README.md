@@ -4,7 +4,7 @@
 -------
 ## Contents
 * Introduction
-* Deep dive
+* Deep dive/ in-depth analysis
 * How to run
 -------
 ## Introduction:
@@ -34,20 +34,18 @@ Once this process of data cleansing is done, we input the array of summaries int
 
 ### 3. KMeans Clustering:
 
-Once the sentences are vectorized, the matrix is passed onto the clustering algorithm. We have taken the number of clusters by the following formula:
+Once the sentences are vectorized, the matrix is passed onto the clustering algorithm. We are choosing KMeans algorithm as it is easy to implement, adapts easily to new examples and has assured convergence to form clusters over uncharecterized/pattern-less data. 
+
+We have taken the number of clusters by the following formula:
 
 ![equation](http://www.sciweavers.org/upload/Tex2Img_1587968682/render.png)
 
 Where **n** is the number of files taken (Twinandilla et al, 2018). 
 
 The cluster labels are attained once the clustering is done. These labels allow us to group the files by clusters 
-The text is grouped by cluster and a new dataframe is created. This new dataframe will contain the text from the clustered files. Once the data is loaded, we proceed to normalize (stopword/special charecters removal only) the text and proceed to the summarization portion. We use the lexrank algorithm to perform the summarization process. 
+The text is grouped by cluster and a new dataframe is created. Once the data is loaded, we proceed to normalize (stopword/special charecters removal and lowercase conversion using **normalize** function) the text and proceed to the summarization portion. We use the lexrank algorithm to perform the summarization process. 
 
 The summarized text is then written into a markdown file labelled **output_#.md** denoting the cluster number #'s output. Additionally, the markdown file will have the first line denoting the cluster that it belongs to. 
-
-
-
-
 
 
 
