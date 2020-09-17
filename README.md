@@ -1,4 +1,3 @@
-# CS5293 Spring 2020 Project 2
 # Text Summarizer
 ### BY Abilash Ramesh
 -------
